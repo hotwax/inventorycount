@@ -6,7 +6,7 @@
       <section class="product-info">
         <ion-item lines="none">
           <ion-label class="ion-text-wrap">
-            <h2>{{ getProductIdentificationValue(productStoreSettings["productIdentificationPref"].primaryId, getProduct(product.productId)) }}</h2>
+            <h1>{{ getProductIdentificationValue(productStoreSettings["productIdentificationPref"].primaryId, getProduct(product.productId)) }}</h1>
             <p>{{ getProductIdentificationValue(productStoreSettings["productIdentificationPref"].secondaryId, getProduct(product.productId)) }}</p>
           </ion-label>
 
