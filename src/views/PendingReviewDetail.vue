@@ -77,7 +77,7 @@
               </ion-item>
               <ion-item lines="none">
                 <div slot="start"></div>
-                <ion-range :value="varianceThreshold" @ionChange="updateVarianceThreshold"></ion-range>
+                <ion-range v-model="varianceThreshold"></ion-range>
               </ion-item>
             </div>
           </ion-list>
@@ -88,11 +88,11 @@
             <ion-segment-button value="all">
               <ion-label>{{ translate("All") }}</ion-label>
             </ion-segment-button>
-            <ion-segment-button color="success" value="accept">
-              <ion-icon :icon="thermometerOutline"/>
+            <ion-segment-button value="accept">
+              <ion-icon color="success" :icon="thermometerOutline"/>
             </ion-segment-button>
-            <ion-segment-button color="danger" value="reject">
-              <ion-icon :icon="thermometerOutline"/>
+            <ion-segment-button value="reject">
+              <ion-icon color="danger" :icon="thermometerOutline"/>
             </ion-segment-button>
           </ion-segment>
         </div>
@@ -341,10 +341,6 @@ async function updateCountName() {
   }
 
   isCountNameUpdating.value = false
-}
-
-function updateVarianceThreshold(event: any) {
-  varianceThreshold.value = event.detail.value
 }
 
 function isItemReadyToAccept(item: any) {
