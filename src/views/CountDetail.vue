@@ -67,6 +67,7 @@
               <Image :src="getProduct(item.productId)?.mainImageUrl" />
             </div>
             <div class="detail">
+              <!-- product details -->
               <ion-item lines="none">
                 <ion-label class="ion-text-wrap">
                   <h1>{{ getProductIdentificationValue(productStoreSettings["productIdentificationPref"].primaryId, getProduct(product.productId)) }}</h1>
@@ -76,19 +77,22 @@
                 <ion-badge slot="end" v-if="product.itemStatusId === 'INV_COUNT_REJECTED'" color="danger">
                   {{ translate("rejected") }}
                 </ion-badge>
-
-                <ion-item lines="none" v-if="filteredItems.length">
-                  <ion-label>{{ `${product.importItemSeqId}/${filteredItems.length}` }}</ion-label>
-                </ion-item>
-
-                <ion-button @click="showPreviousProduct" :disabled="isFirstItem">
-                  <ion-icon slot="icon-only" :icon="chevronUpCircleOutline"></ion-icon>
-                </ion-button>
-        
-                <ion-button @click="showNextProduct" :disabled="isLastItem">
-                  <ion-icon slot="icon-only" :icon="chevronDownCircleOutline"></ion-icon>
-                </ion-button>
               </ion-item>
+              <!-- product indext -->
+              <div class="count-index" v-if="filteredItems.length">
+                <ion-label>{{ `${product.importItemSeqId}/${filteredItems.length}` }}</ion-label>
+
+                <div class="count-cursor">
+                  <ion-button shape="round" color="medium" fill="outline" @click="showPreviousProduct" :disabled="isFirstItem">
+                    <ion-icon slot="icon-only" :icon="chevronUpOutline"></ion-icon>
+                  </ion-button>
+          
+                  <ion-button shape="round" color="medium" fill="outline" @click="showNextProduct" :disabled="isLastItem">
+                    <ion-icon slot="icon-only" :icon="chevronDownOutline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+
               <ion-list v-if="product.statusId !== 'INV_COUNT_CREATED' && product.statusId !== 'INV_COUNT_ASSIGNED'">
                 <ion-item>
                   {{ translate("Counted") }}
@@ -219,7 +223,7 @@ import {
   onIonViewDidEnter,
   alertController
 } from '@ionic/vue';
-import { chevronDownCircleOutline, chevronUpCircleOutline } from "ionicons/icons";
+import { chevronDownOutline, chevronUpOutline } from "ionicons/icons";
 import { translate } from '@/i18n'
 import { computed, defineProps, ref, onUpdated } from 'vue';
 import { useStore } from "@/store";
